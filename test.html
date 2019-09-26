@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WSO Plugin Test</title>
+		<link rel="stylesheet" href="index.css">
+		<script type="text/javascript">
+			let registeredWOPlugins = [];
+			
+			function registerWOPlugin(name, onload) {
+				registeredWOPlugins.push({ name, onload });
+			}
+			
+			const WOPortfolioProvider = {
+				isins() {
+					return ["DE1234", "CH5678"];
+				},
+			};
+			
+			window.onload = function() {
+				registeredWOPlugins.forEach(p => p.onload());
+			};
+		</script>
+		<script type="text/javascript" src="index.js"></script>
+	</head>
+	<body>
+		<div id="plugin-container"></div>
+	</body>
+</html>
