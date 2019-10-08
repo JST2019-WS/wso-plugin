@@ -13,4 +13,26 @@
             top: -18px;
             font-size: 11px;
             color: rgba(0, 0, 0, 0.5);
-        }</style><link rel="shortcut icon" href="/favicon.ico"></head><body><script async src="/bundle.js"></script></body></html>
+        }</style><script>let registeredWOPlugins = [];
+
+        function registerWOPlugin(name, onload) {
+            let plugin = { name, onload };
+            switch(name) {
+                case "SecuritiesRecommendationEngine": plugin.containerId = "rengine-plugin-container"; break;
+                default: return;
+            }
+            registeredWOPlugins.push(plugin);
+        }
+
+        const WOPluginInfoProvider = {
+            currentUserId() {
+                return "12345678";
+            },
+            currentPortfolioId() {
+                return "87654321";
+            },
+        };
+
+        window.onload = function() {
+            registeredWOPlugins.forEach(p => p.onload(p.containerId));
+        };</script></head><body><script async src="/index.js"></script><div id="rengine-plugin-container"><script src="/index.js" defer="defer"></script></body></html>
